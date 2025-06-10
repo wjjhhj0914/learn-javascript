@@ -57,17 +57,17 @@
 // ------------------------------------------------
 // Boolean
 
-true; // Boolean
-('true'); // String
+// true; // Boolean
+// ('true'); // String
 
-false; // Boolean
-('false'); // String
+// false; // Boolean
+// ('false'); // String
 
 // ------------------------------------------------
 // Undefined
 
-undefined;
-console.log(undefined);
+// undefined;
+// console.log(undefined);
 
 // 변수를 정의할 때, 아무것도 하지 않으면 기본값인 undefined가 됨.
 
@@ -77,12 +77,18 @@ console.log(undefined);
 // 문서에 <ul> 요소는 없다(비어 있다)
 // document.querySelector('ul') -> null
 
-null;
-console.log(null);
+// null;
+// console.log(null);
 
 // ------------------------------------------------
 // Symbol
 
-console.log(Symbol());
-console.log(Symbol(2025));
-console.log(Symbol('고유식별자'));
+// console.log(Symbol());
+// console.log(Symbol(2025));
+// console.log(Symbol('고유식별자'));
+
+// ------------------------------------------------
+// BigInt
+
+console.log(BigInt(Number.MAX_SAFE_INTEGER + 10));
+console.log(10000n);
