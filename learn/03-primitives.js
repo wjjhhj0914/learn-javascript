@@ -31,10 +31,10 @@
 // ------------------------------------------------
 // Number
 
-console.log(10000);
-console.log(10_000);
-console.log(10.9843);
-console.log(0.49393);
+// console.log(10000);
+// console.log(10_000);
+// console.log(10.9843);
+// console.log(0.49393);
 
 // 산술 연산
 // 덧셈 (add):       +
@@ -43,16 +43,16 @@ console.log(0.49393);
 // 나눗셈 (divide):   /
 // 나머지 (modulus):  %
 
-console.log(10000000 + 3999382);
-console.log(10000000 - 3999382);
-console.log(10000000 * 3999382);
-console.log(10000000 / 3999382);
-console.log(10000000 + 3999382);
-console.log(10000000 % 6);
+// console.log(10000000 + 3999382);
+// console.log(10000000 - 3999382);
+// console.log(10000000 * 3999382);
+// console.log(10000000 / 3999382);
+// console.log(10000000 + 3999382);
+// console.log(10000000 % 6);
 
 // JavaScript 숫자(정수)의 안전 범위 표현
-console.log(Number.MIN_SAFE_INTEGER);
-console.log(Number.MAX_SAFE_INTEGER);
+// console.log(Number.MIN_SAFE_INTEGER);
+// console.log(Number.MAX_SAFE_INTEGER);
 
 // ------------------------------------------------
 // Boolean
@@ -62,3 +62,11 @@ true; // Boolean
 
 false; // Boolean
 ('false'); // String
+
+// ------------------------------------------------
+// Undefined
+
+undefined;
+console.log(undefined);
+
+// 변수를 정의할 때, 아무것도 하지 않으면 기본값인 undefined가 됨.
