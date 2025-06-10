@@ -79,3 +79,10 @@ console.log(undefined);
 
 null;
 console.log(null);
+
+// ------------------------------------------------
+// Symbol
+
+console.log(Symbol());
+console.log(Symbol(2025));
+console.log(Symbol('고유식별자'));
