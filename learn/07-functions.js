@@ -25,6 +25,8 @@ console.log('함수(Function)');
 // 6. 2분 후에 불을 끈다.
 // 7. 라면을 맛있게 먹는다.
 
+// -------------------------------------------------
+
 // 함수 선언 (Function Declaration) 구문
 function drawWater() {
   console.groupCollapsed('물 길러가자!!');
@@ -55,3 +57,37 @@ drawWater();
 // function conti nue() {}
 // function cla---ss() {}
 // function for() {}
+
+// ---------------------------------------------------
+// 전역 변수 & 지역 변수
+
+// 함수 밖에 있는 [전역] 변수 (Global scope variables)
+// 코드 실행 범위 어디서나 접근이 가능한 변수
+let year = 4027;
+
+// 함수 선언
+function writeDiary(연도, 월, 일) {
+  // 함수 이름 옆 () 안에 선언된 변수를 특별히 매개변수라 부른다.
+  // console.log(연도, 월, 일);
+  // 함수 내부에 선언된 변수
+  // 함수 안에서 사용
+  // 지역 변수 (Local scope variables)
+
+  // 연도(year)
+  let year = 2025;
+  // 월(month)
+  let month = 6;
+  // 일(day)
+  let day = 10;
+
+  console.log(연도 + '년 ' + 월 + '월 ' + 일 + '일에 일기를 쓴다.');
+}
+
+// 함수 호출(실행)
+writeDiary(2025, 6, 10);
+writeDiary(2025, 6, 11);
+writeDiary(2025, 6, 12);
+writeDiary(2025, 6, 13);
+
+// ------------------------------------------------
+// 함수 매개변수 (Function Parameters)
