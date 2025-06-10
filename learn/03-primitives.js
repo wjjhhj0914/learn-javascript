@@ -13,6 +13,7 @@
 
 // ------------------------------------------------
 // String
+
 '작은 따옴표로 묶인 텍스트 데이터';
 '큰 따옴표 쌍으로 묶인 문자 값';
 
@@ -29,11 +30,11 @@
 
 // ------------------------------------------------
 // Number
+
 console.log(10000);
 console.log(10_000);
 console.log(10.9843);
 console.log(0.49393);
-console.log();
 
 // 산술 연산
 // 덧셈 (add):       +
@@ -52,3 +53,12 @@ console.log(10000000 % 6);
 // JavaScript 숫자(정수)의 안전 범위 표현
 console.log(Number.MIN_SAFE_INTEGER);
 console.log(Number.MAX_SAFE_INTEGER);
+
+// ------------------------------------------------
+// Boolean
+
+true; // Boolean
+('true'); // String
+
+false; // Boolean
+('false'); // String
