@@ -70,3 +70,12 @@ undefined;
 console.log(undefined);
 
 // 변수를 정의할 때, 아무것도 하지 않으면 기본값인 undefined가 됨.
+
+// ------------------------------------------------
+// Null (비어 있다) 긍정적인 의미는 아님. undefined도 마찬가지.
+
+// 문서에 <ul> 요소는 없다(비어 있다)
+// document.querySelector('ul') -> null
+
+null;
+console.log(null);
