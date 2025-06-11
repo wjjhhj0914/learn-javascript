@@ -118,4 +118,3 @@ function subtract(num1, num2) {
 }
 
 console.log(subtract(10, 4));
-// ------------------------------------------
