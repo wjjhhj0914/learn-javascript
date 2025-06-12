@@ -56,10 +56,16 @@ console.log(me.study());
 
 // 7. 객체의 메서드에 매개변수를 추가하고, 이 메서드를 호출해봅니다.
 const teacher = {
-  name: '야무',
+  name: '야무쌤',
   teach: function (subject) {
     return subject + '를 가르칩니다.';
   },
 };
 
 console.log(teacher.teach('JavaScript'));
+
+// 8. 객체의 속성 중 하나를 선택해, 삭제해보세요.
+delete teacher['name'];
+console.log(teacher);
+teacher.name = '슬비쌤';
+console.log(teacher);
