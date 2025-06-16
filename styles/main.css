@@ -7,6 +7,25 @@ body {
   background-color: var(--bg-color);
   color: var(--fg-color);
   margin: 0;
+
+  &.is-active {
+    background-color: skyblue;
+  }
+}
+
+.clickable {
+  user-select: none;
+  cursor: pointer;
+  border: 0;
+  border-radius: 4px;
+  padding: 6px 12px;
+  background-color: #181818;
+  color: #fff;
+
+  &.is-active {
+    background-color: lightyellow;
+    color: #181818;
+  }
 }
 
 h1 {
@@ -27,3 +46,4 @@ h1 {
     }
   }
 }
+
