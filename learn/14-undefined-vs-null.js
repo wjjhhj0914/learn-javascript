@@ -22,3 +22,4 @@ console.log('처음 knight의 mount는?', knight.mount); // null
 // knight가 말을 얻었다!
 knight.mount = '브라우니';
 console.log('말을 얻은 후 knight의 mount는?', knight.mount); // '브라우니'
+
