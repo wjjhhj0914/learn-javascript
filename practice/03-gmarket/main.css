@@ -1,0 +1,40 @@
+.close-dialog {
+  display: none;
+}
+
+.dialog-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: #070611;
+  position: relative;
+  width: 360px;
+  height: 400px;
+  border-radius: 14px;
+}
+
+.dialog-image {
+  width: 360px;
+  height: 278px;
+  margin-block-start: 60px;
+}
+
+.button {
+  width: 24px;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 0;
+  margin: 12px 20px 0 0;
+  cursor: pointer;
+}
+
+.dialog-description {
+  background-color: #8EC3FA;
+  color: #070611;
+  padding: 12px 88px;
+  margin: 0 auto;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+}
