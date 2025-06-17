@@ -9,7 +9,7 @@ body {
   margin: 0;
 
   &.is-active {
-    background-color: skyblue;
+    background-color: var(--blue-500);
   }
 }
 
@@ -19,12 +19,12 @@ body {
   border: 0;
   border-radius: 4px;
   padding: 6px 12px;
-  background-color: #181818;
-  color: #fff;
+  background-color: var(--blue-900);
+  color: var(--blue-100);
 
   &.is-active {
-    background-color: lightyellow;
-    color: #181818;
+    background-color: var(--blue-100);
+    color: var(--blue-800);
   }
 }
 
@@ -40,10 +40,9 @@ h1 {
   li {
     padding: 4px;
 
-    &.active {
+    &.charactor-is-active {
       font-weight: 900;
-      color: var(--yellow-800);
+      color: var(--blue-700);
     }
   }
 }
-
