@@ -8,6 +8,7 @@
     <!-- CSS MIME 타입 (기본값 : text/css) -->
     <link rel="stylesheet" href="./styles/main.css" />
     <!-- JavaScript MIME 타입 (기본값 : text/javascript) 생략 가능 -->
+     <script src="./learn/utils/events.js"></script>
     <script>
       // console.log(2025);
     </script>
@@ -39,8 +40,8 @@
     <!-- <script type="module" src="./learn/14-dom-practice.js"></script> -->
     <!-- <script type="module" src="./learn/14-change-class-properties.js"></script> -->
     <!-- <script src="./learn/15-clickEventListener.js"></script> -->
-     <script type="module" src="./learn/15-callbacks.js"></script>
-     <script src="./learn/16-custom-callback.js"></script>
+     <!-- <script type="module" src="./learn/15-callbacks.js"></script> -->
+     <script type="module" src="./learn/16-custom-callback.js"></script>
     <script>
       // 이벤트 처리기(event handler)
       /*
@@ -57,11 +58,13 @@
   </head>
   <body>
     <h1>JavaScript 학습</h1>
-    <!-- <button type="button" onclick="handleToggle()">레거시 이벤트 모델을 사용하는 요소</button>
-    <hr />
-    <button type="button" class="clickable">클릭 가능한 버튼 요소</button>
-    <button type="button" class="click-button" onclick="clickButton()">click!</button> -->
-    <button type="button" class="clickable button-1">클릭 가능한 요소</button>
-    <button type="button" class="clickable button-2">클릭 가능한 요소</button>
+    
+    <div role="group" style="display: flex; gap: 20px; flex-direction: column;">
+      <button type="button" class="clickable button-1">클릭 가능한 요소</button>
+      <button type="button" class="clickable button-2">클릭 가능한 요소</button>
+      <button type="button" class="clickable button-3">클릭 가능한 요소</button>
+      <button type="button" class="clickable button-4">클릭 가능한 요소</button>
+      <button type="button" class="clickable button-5">클릭 가능한 요소</button>
+    </div>
   </body>
 </html>

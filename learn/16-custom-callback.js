@@ -1,5 +1,42 @@
+const body = document.querySelector('body');
 const button1 = document.querySelector('.button-1');
 const button2 = document.querySelector('.button-2');
+const button3 = document.querySelector('.button-3');
+const button4 = document.querySelector('.button-4');
+const button5 = document.querySelector('.button-5');
+
+// 리스너 함수를 사용하면 유지보수할 때도 좋음.
+const handleActive = () => {
+  body.classList.add('is-active')
+  button1.classList.add('is-active')
+  button2.classList.add('is-active')
+  button3.classList.add('is-active')
+  button4.classList.add('is-active')
+  button5.classList.add('is-active')
+}
+
+const handleInactive = () => {
+  body.classList.remove('is-active')
+  button1.classList.remove('is-active')
+  button2.classList.remove('is-active')
+  button3.classList.remove('is-active')
+  button4.classList.remove('is-active')
+  button5.classList.remove('is-active')
+}
+
+mouseenter(button1, handleActive)
+mouseleave(button1, handleInactive)
+mouseenter(button2, handleActive)
+mouseleave(button2, handleInactive)
+mouseenter(button3, handleActive)
+mouseleave(button3, handleInactive)
+mouseenter(button4, handleActive)
+mouseleave(button4, handleInactive)
+mouseenter(button5, handleActive)
+mouseleave(button5, handleInactive)
+
+
+// ------------------------------------------------------------------------
 
 click(document.querySelector('.button-1'), () => console.log('button 1'));
 click(document.querySelector('.button-2'), () => console.log('button 2'));
@@ -10,9 +47,7 @@ const handleClick = () => console.log('Button clicked!');
 // click(button1, handleClick);
 // click(button2, handleClick);
 
-function click(element, listener) { // listener가 콜백
-  element.addEventListener('click', listener);
-}
+
 
 // ------------------------------------------------------------------------
 
