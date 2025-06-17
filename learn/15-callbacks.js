@@ -69,3 +69,19 @@ function fn2() {
   // [2]
   console.log('fn2');
 }
+
+// 이벤트 루프
+// Call Stack
+function greet() {
+  console.log('안녕!')
+}
+
+function respond() {
+  return setTimeout(() => {
+      console.log('헤이!!')
+  }, 2000)
+}
+
+respond()
+greet()
+
