@@ -13,11 +13,13 @@ console.log(cart, cart.length);
 */
 
 // new Array()를 사용해 배열 객체를 생성할 때 발생할 수 있는 문제점
+/*
 const onlyOneNumberListLiteral = [99];
 console.log(onlyOneNumberListLiteral);
 
 const onlyOneNumberList = new Array(99);
 console.log(onlyOneNumberList); // 기대 값: [99] / 결과 값: [empty x 99] 빈 방 99개가 생긴 느낌
+*/
 
 // 배열은 객체다.
 // 객체의 조건은 속성:값을 가진다.
@@ -42,14 +44,37 @@ console.log(onlyOneNumberList); // 기대 값: [99] / 결과 값: [empty x 99] �
 // 배열객체.메서드()
 
 // 대괄호에 인덱스를 전달해 배열 항목 가져오기
+/*
 let firstItem = shoppingList[0];
 let secondFromTheEndItem = shoppingList[shoppingList.length - 2];
 let lastItem = shoppingList[shoppingList.length - 1];
 console.log(firstItem, lastItem, secondFromTheEndItem);
+*/
 
 // .at() 메서드에 인덱스를 전달해 배열 항목 가져오기
 // .at() 메서드는 끝에서 항목을 가져올 때 편리함!
+/*
 let firstCartItem = shoppingList.at(0);
 let secondFromTheEndCartItem = shoppingList.at(-2);
 let lastCartItem = shoppingList.at(-1);
 console.log(firstCartItem, secondFromTheEndCartItem, lastCartItem);
+*/
+
+// 배열 원소(항목) 값 읽기
+console.log(shoppingList[2]);
+console.log(shoppingList.at(2));
+
+// 배열 원소 값 수정
+shoppingList[2] = '순두부';
+console.log(shoppingList);
+
+// 실습
+const emptyArray = [];
+const animals = ['cat', 'dog', 'elephant'];
+console.log(emptyArray, animals);
+
+const instructors = ['야무', '슬비'];
+let yamoo9 = instructors[0];
+instructors[1] = '김데레사';
+
+console.log(yamoo9, instructors);
