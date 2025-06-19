@@ -57,9 +57,9 @@ while(wantToDraw) {
 // let drawCount = 20;
 // let i = 0;
 
-const draw = (n) => {
-  console.log('도화지에 그림을 그린 횟수 = ' + n)
-};
+// const draw = (n) => {
+//   console.log('도화지에 그림을 그린 횟수 = ' + n)
+// };
 
 //   while(i++ < drawCount /* 1 ~ 10 -> continue -> 16 ~ 19 */) {
 //     // i += 1
