@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>사용자 정의 CSS 속성 설정</title>
+  <style>
+    :root {
+      --theme-color: #0652dd;
+    }
+
+    .themed-box {
+      margin-block-end: 1.25rem;
+      background-color: var(--theme-color);
+      color: #fff;
+      padding: 20px;
+      transition: background-color 0.3s;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="themed-box">CSS 변수로 배경색을 설정했어요!</div>
+  <button type="button" class="change-theme-button">색상 변경</button>
+
+  <script>
+    const body = document.body;
+    const button = document.querySelector('button');
+    const themeBox = document.querySelector('.themed-box');
+
+    button.addEventListener('click', () => {
+      themeBox.style.setProperty('--theme-color', '#181818');
+    })
+  </script>
+</body>
+
+</html>
