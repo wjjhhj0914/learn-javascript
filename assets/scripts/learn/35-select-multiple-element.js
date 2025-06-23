@@ -27,7 +27,7 @@
   // console.log(navLinksArray.toReversed)
   // console.log(navLinksArray.filter)
 
-})();
+});
 
 // JavaScript 객체
 // - Object
@@ -48,3 +48,58 @@
 
 // Node.js 런타임 (JavaScript 실행 환경)
 // - Global
+
+(() => {
+  const lifeTips = document.querySelector('.life-tips');
+  
+  // Document.querySelectorAll
+  // Element.querySelectorAll
+  
+  const paragraphs = lifeTips.querySelectorAll('p');
+  console.log(paragraphs);
+
+  /*
+  const firstParagraphElement = paragraphs.item(0);
+  console.log(firstParagraphElement);
+  const secondParagraphElement = paragraphs.item(1);
+  console.log(secondParagraphElement);
+  const lastParagraphElement = paragraphs.item(paragraphs.length - 1);
+  console.log(lastParagraphElement);
+  */
+  
+  const PRIMARY_KEY = 'color-primary';
+
+  // Loop (반복, 순환)을 이용해서 개별 요소에 접근할 수 있다!
+  // - while
+  let i = 0, l = paragraphs.length;
+  while (i < l) {
+    const paragraphElement = paragraphs.item(i);
+    paragraphElement.classList.add(PRIMARY_KEY);
+    ++i;
+  }
+
+  // do...while
+  // for
+  for (let i = 0, l = paragraphs.length; i < l; ++i) {
+    const paragraphElement = paragraphs.item(i);
+    if (paragraphElement.classList.contains(PRIMARY_KEY)) {
+      paragraphElement.classList.remove(PRIMARY_KEY);
+    }
+  }
+
+  // for...of <- 단점 : index를 사용할 수 없다.
+  for (const paragraphElement of paragraphs) {
+    console.log(paragraphElement);
+    if (!paragraphElement.classList.contains(PRIMARY_KEY)) {
+      paragraphElement.classList.add(PRIMARY_KEY);
+    }
+  }
+
+  // NodeList.forEach()
+  paragraphs.forEach((paragraph) => {
+    if (paragraph.classList.contains(PRIMARY_KEY)) {
+      paragraph.classList.remove(PRIMARY_KEY);
+    }
+  })
+
+})();
