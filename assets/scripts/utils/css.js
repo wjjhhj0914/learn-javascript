@@ -1,6 +1,3 @@
-// getComputedStyle()
-// element.style
-
 // getStyle(element, propertyName) function: return propertyValue
 function getStyle(element, propertyName, pseudoElement) {
   const elementStyles = getComputedStyle(element, pseudoElement);
