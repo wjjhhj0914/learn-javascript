@@ -12,7 +12,17 @@
      <!-- <script src="./learn/utils/events.js"></script> -->
       <style>
         body { background-color: maroon; }
-        h1 { color: tan; }
+        h1 { 
+          position: relative;
+          color: tan;
+          
+          &::after {
+            content: '😌';
+            position: absolute;
+            top: -20px;
+            right: -50px;
+          }
+         }
       </style>
   </head>
   <!-- <body style="background-color: maroon;"> -->
