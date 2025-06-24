@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>가상 요소 스타일 읽기</title>
+  <style>
+    .quote {
+      padding-left: 20px;
+      position: relative;
+      font-size: 1.2rem;
+      color: #2c3e50;
+
+      &::before {
+        content: "💬";
+        position: absolute;
+        left: 0;
+      }
+    }
+  </style>
+  <script>
+    {
+      document.addEventListener('DOMContentLoaded', () => {
+        const quoteElement = document.querySelector('.quote');
+        const quotePseudoElementStyles = getComputedStyle(quoteElement, '::before');
+        
+        console.log(quotePseudoElementStyles.getPropertyValue('content'));
+        console.log(quotePseudoElementStyles.getPropertyValue('position'));
+        console.log(quotePseudoElementStyles.left);
+      })
+    }
+  </script>
+
+  
+</head>
+
+<body>
+
+  <p class="quote">이것은 가상 요소가 포함된 인용문입니다.</p>
+  
+</body>
+
+</html>
