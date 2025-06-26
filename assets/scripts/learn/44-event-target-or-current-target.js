@@ -31,7 +31,7 @@
 // 이벤트를 발생시킨 대상 찾기
 (() => {
   // 화살표 함수 표현식을 이벤트 핸들러로 정의한 내부에서 this를 사용하면 무슨 일이 발생할까?
-  const handleArrowFunctionExpression = () => {Add commentMore actions
+  const handleArrowFunctionExpression = () => {
     console.log('화살표 함수 표현식 내부:', this)
   }
 
@@ -98,5 +98,32 @@
       color: #fff\
     '
   }
+})()
 
-})
+// 이벤트 리스너(핸들러) 콜백(함수)에서
+// 이벤트를 발생시킨 대상 찾기 (event.currentTarget)
+;(() => {
+  const button = document.querySelector('[data-name="change-bg-color"]')
+  
+  // 이벤트 리스너(핸들러) 콜백(함수)는 반드시 이벤트 객체를 전달
+  // 이벤트 객체를 사용해 청취 중인 대상을 사용하면 this에서 확인했던
+  // 화살표 함수 표현식에서 참조 대상이 변경되는 문제는 발생핮 ㅣ않음
+  const handleChangeButtonStyles = (event) => {
+    console.log(event); // 이벤트 객체
+    console.log(event.currentTarget); // 이벤트가 연결된 대상
+
+    // 2. event 객체의 currentTarget 속성
+    event.currentTarget.style.cssText = '\
+    background-color: #7f1cef;\
+    padding: 8px 16px;\
+    border: 0;\
+    border-radius: 4px;\
+    color: #fff\
+    '
+  }
+  
+  button.addEventListener('click', handleChangeButtonStyles)
+})()
+
+// 결과적으로, 이벤트 리스너를 분리하든, 인라인으로 바로 연결해 사용하든,
+// 변수 또는 this 대신에 리스너 함수에 인수로 전달되는 이벤트 객체를 활용하세요!
