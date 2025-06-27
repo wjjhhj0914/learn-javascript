@@ -90,9 +90,9 @@
   const linkList = document.querySelector('.link-list')
 
   linkList.addEventListener('click', (e) => {
-    if (!e.defaultPrevented) e.preventDefault()
+    if (!e.defaultPrevented) e.preventDefault();
     
-    const target = e.target
+    const target = e.target;
     
     if (target.matches('a[href="/news"]')) {
       console.log(target.getAttribute('href'))
