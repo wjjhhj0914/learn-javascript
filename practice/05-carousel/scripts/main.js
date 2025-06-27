@@ -27,7 +27,7 @@
   const SELECTED_CLASSNAME = 'is-selected';
 });
 
-// 3-1. 현재 / 다음 콘텐츠 탐색 | 다음 탐색 기능(함수) 구현
+// 3-1. 현재/다음 콘텐츠 탐색 | 다음 탐색 기능(함수) 구현
 (() => {
   const carousel = document.querySelector('.carousel');
   const contentsWrapper = carousel.querySelector('.carousel__contents');
@@ -76,7 +76,7 @@
   })
 });
 
-// 3-3. 다음 콘텐츠로 이동 | 다음 탐색 기능(함수) 구현
+// 3-3. 선택된 상태 변경 | 다음 탐색 기능(함수) 구현
 (() => {
   const carousel = document.querySelector('.carousel');
   const contentsWrapper = carousel.querySelector('.carousel__contents');
@@ -99,7 +99,7 @@
   })
 });
 
-// 3-4. 다음 콘텐츠로 이동 | 다음 탐색 기능(함수) 구현
+// 3-4. 다음 탐색 버튼 감춤 | 다음 탐색 기능(함수) 구현
 (() => {
   const carousel = document.querySelector('.carousel');
   const contentsWrapper = carousel.querySelector('.carousel__contents');
@@ -119,15 +119,13 @@
     
     const distance = getComputedStyle(nextContent).getPropertyValue('left');
     contentsWrapper.style.setProperty('transform', 'translateX(-' + distance + ')');
-
-    // 선택된 상태 변경
-    // 이전 선택된 콘텐츠에서 활성 상태 클래스 이름 제거
+    
     selectedContent.classList.remove(SELECTED_CLASSNAME);
     nextContent.classList.add(SELECTED_CLASSNAME);
   })
 });
 
-// 4-1. 다음 콘텐츠로 이동 | 다음 탐색 기능(함수) 구현
+// 4-1. 현재/이전 콘텐츠 탐색 | 이전 탐색 기능(함수) 구현
 (() => {
   const carousel = document.querySelector('.carousel');
   const contentsWrapper = carousel.querySelector('.carousel__contents');
@@ -159,7 +157,7 @@
   })
 });
 
-// 4-2. 다음 콘텐츠로 이동 | 다음 탐색 기능(함수) 구현
+// 4-2. 이전 콘텐츠로 이동 | 이전 탐색 기능(함수) 구현
 (() => {
   const carousel = document.querySelector('.carousel');
   const contentsWrapper = carousel.querySelector('.carousel__contents');
@@ -305,8 +303,7 @@
 
     const selectedContent = contentsWrapper.querySelector('.' + SELECTED_CLASSNAME);
     const prevContent = selectedContent.previousElementSibling;
-    
-    // 이전 탐색 버튼 감춤
+
     if (!prevContent.previousElementSibling) prevButton.hidden = true;
 
     const distance = getComputedStyle(prevContent).getPropertyValue('left');
