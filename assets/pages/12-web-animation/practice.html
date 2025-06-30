@@ -72,7 +72,7 @@
           animation-duration: 1s;
           animation-timing-function: linear;
           /* animation-(iteration-count|direction|fill-mode|play-state) */
-          animation-iteration-count: infinite;
+          animation-iteration-count: 2;
           animation-direction: alternate; /* pingpong */
           animation-fill-mode: forwards;
           animation-play-state: running;
@@ -129,6 +129,23 @@
 
       main.addEventListener('transitioncancel', (e) => {
         console.log('transition "cancel"', e.propertyName, e.target);
+      })
+
+      // CSS Animation Types
+      main.addEventListener('animationstart', (e) => {
+        console.log('animation "start"', e.animationName, e.target);
+      })
+
+      main.addEventListener('animationiteration', (e) => {
+        console.log('animation "iteration"', e.animationName, e.target);
+      })
+
+      main.addEventListener('animationend', (e) => {
+        console.log('animation "end"', e.animationName, e.target);
+      })
+
+      main.addEventListener('animationcancel', (e) => {
+        console.log('animation "cancel"', e.animationName, e.target);
       })
     })
 </script>
