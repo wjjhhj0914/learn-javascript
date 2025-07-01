@@ -78,7 +78,7 @@
       animation.pause()
     }
 
-    // 상태 변경
+    // 상태 전환(switch)
     isAnimating = !isAnimating    
   })
 
