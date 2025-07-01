@@ -237,14 +237,16 @@
 // GSAP - Timeline
 (() => {
   function animate() {
-    gsap.to('.box', {
-      rotation: 360, duration: (index) => {
-        if (index === 0) {
-          return 2;
-        } else {
-          return 0.1;
-        }
-      }, stagger: 0.1 });
+    // const tween = gsap.to('.box:first-of-type', {});
+    // console.log(tween);
+    
+    // GSAP의 타임라인 인스턴스 생성
+    const tl = gsap.timeline({ repeat: 1, repeatDelay: 1, yoyo: true });
+
+    tl
+      .from('.blue', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' })
+      .from('.yellow', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, '<')
+      .from('.green', { y: 200, opacity: 0, duration: 0.4, ease: 'back.out' }, '+=1');
   }
 
   setTimeout(animate, 500);
