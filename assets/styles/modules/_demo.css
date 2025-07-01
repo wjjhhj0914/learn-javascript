@@ -76,13 +76,13 @@ h1 {
   }
 
   /* css로 transition trigger - 속성 값 상태 변경 */
-  /* &:hover {
+  &:hover {
     background-color: var(--fill-hover);
   }
 
   &:active {
     scale: 1.2;
-  } */
+  }
 }
 
 .box {

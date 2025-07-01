@@ -56,8 +56,8 @@
   }
 
   modal_overlay.addEventListener('click', closeModalDialog);
-  modal_dialog.addEventListener('click', (e) => {
-    // e.stopPropagation(); // IMPORTANT
-    console.log('[이벤트 버블링] 이벤트 전파 중지');
-  })
+  // modal_dialog.addEventListener('click', (e) => {
+  //   // e.stopPropagation(); // IMPORTANT
+  //   console.log('[이벤트 버블링] 이벤트 전파 중지');
+  // })
 })();
