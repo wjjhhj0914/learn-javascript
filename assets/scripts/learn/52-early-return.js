@@ -23,7 +23,7 @@
 
   const result = hasOwnClassName(document.body);
   console.log(result);
-})();
+});
 
 // 빠른 반환을 사용하는 경우
 (() => {
@@ -48,7 +48,7 @@
 
   const result = hasOwnClassName(document.body);
   console.log(result);
-})();
+});
 
 // 중첩된 코드 줄이기
 (() => {
@@ -94,4 +94,119 @@
     el.classList.toggle('.toggle');
   });
 });
+
+// 실습
+// ## 1. 클릭 시, 유효한 입력만 처리
+(() => {
+  // 사용자가 입력한 값이 없으면 "빠른 반환"을 사용해 경고 메시지를 띄우고,
+  // 입력이 있을 때만 결과를 출력합니다.
+
+  const practice1 = document.querySelector('.practice1');
+  const userNameInput = document.getElementById('username');
+  const output = practice1.querySelector('output');
+
+  practice1.addEventListener('click', (e) => {
+    const submitButton = e.target.closest('[type="submit"]');
+
+    if (submitButton) {
+      e.preventDefault(); // 브라우저 기본 작동 방지 
+
+      const userNameInputValue = userNameInput.value.trim();
+
+      if (!userNameInputValue) {
+        alert('이름을 입력하세요!');
+        // userNameInput.click();
+        userNameInput.select();
+        // userNameInput.focus();
+      } else {
+        output.value = userNameInputValue;
+        userNameInput.value = ''; // 브라우저의 기본 작동을 방지했을 때 input이 비워지는 게 좋으니까
+      }
+    }
+  })
+});
+
+// 빠른 반환
+(() => {
+  const practice1 = document.querySelector('.practice1');
+  const userNameInput = document.getElementById('username');
+  const output = practice1.querySelector('output');
+
+  practice1.addEventListener('click', (e) => {
+    const submitButton = e.target.closest('[type="submit"]');
+
+    if (!submitButton) return; // 빠른 반환 (함수 종료!)
+
+    e.preventDefault();
+
+    const userNameInputValue = userNameInput.value.trim();
+
+    if (!userNameInputValue) {
+      alert('이름을 입력하세요!');
+      userNameInput.select();
+    } else {
+      output.value = userNameInputValue;
+      userNameInput.value = '';
+    }
+  })
+});
+
+// 실습 2
+// ## 2. 점수 별, 등급 출력
+(() => {
+  // 사용자가 입력한 점수에 따른 등급을 화면에 출력합니다.
+  const practice2 = document.querySelector('.practice2');
+  const input = practice2.querySelector('input');
+  const button = practice2.querySelector('button');
+  const output = practice2.querySelector('output');
+
+  button.addEventListener('click', () => {
+    const score = Number(input.value);
+    const grade = getGrade(score);
+
+    output.textContent = grade;
+  })
+
+  getGrade();
+
+  function getGrade(score) {
+    let grade;
+    if (score >= 90) {
+      grade = 'A';
+    } else if (score >= 75) {
+      grade = 'B';
+    } else if (score >= 60) {
+      grade = 'C';
+    } else {
+      grade = 'F';
+    }
+    return grade;
+  }
+
+})();
+
+// ## 2. 점수 별, 등급 출력
+(() => {
+  // 사용자가 입력한 점수에 따른 등급을 화면에 출력합니다.
+  const practice2 = document.querySelector('.practice2');
+  const input = practice2.querySelector('input');
+  const button = practice2.querySelector('button');
+  const output = practice2.querySelector('output');
+
+  button.addEventListener('click', () => {
+    const score = Number(input.value);
+    const grade = getGrade(score);
+
+    output.textContent = grade;
+  })
+
+  getGrade();
+
+  function getGrade(score) {
+    if (score >= 90) return 'A'
+    if (score >= 75) return 'B'
+    if (score >= 60) return 'C'
+    return 'F';
+  }
+})();
 
