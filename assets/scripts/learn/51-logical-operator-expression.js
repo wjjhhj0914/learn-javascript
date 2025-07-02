@@ -33,4 +33,37 @@
   z = Math.random() > 0.5; // true or false (어떤 숫자가 나올지 모르니까)
 
   console.log(x && z && y); // NaN or false
+});
+
+// || 논리 연산자
+// || 연산자는 첫 번째 Truthy 값을 찾는다.
+(() => {
+  const user = {
+    name: 'Harry',
+    email: 'harry@gmail.com',
+    isSigned: false,
+  };
+
+  // 조건문
+  if (user.isSigned) {
+    signOut();
+  } else {
+    signIn();
+  }
+  
+  // 조건식
+  user.isSigned ? signOut() : signIn();
+  
+  // 논리 연산자 식 (조건 처리 가능)
+  user.isSigned || signIn();
+  user.isSigned && signOut(); // 로그인 되어 있으니까 로그아웃 하라.
+
+  function signIn() {
+    return 'Successfully logged in!';
+  }
+
+  function signOut() {
+    return 'Logout successful!';
+  }
 })();
+
