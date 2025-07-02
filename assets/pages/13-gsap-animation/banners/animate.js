@@ -1,29 +1,16 @@
-(() => {
-  const wordCreative = document.querySelector('.banner__title span');
-const wordProcess = document.querySelector('.process');
-const referenceButton = document.querySelector('.banner__link');
+// CSS linear gradient()에 transition을 설정하는 방법
+// custom properties + linear-gradient() + transition
 
-referenceButton.addEventListener('click', () => {
-  gsap.to('.process', { duration: 2, x: 50, color: 'blue' })
-  gsap.to(wordCreative, { duration: 2, x: 100, color: 'blue' })
-})
-
-const tl = gsap.timeline({ repeat: -1, repeatDelay: 1, yoyo: true })
-
-tl.to('#earth', {
-  duration: 2,
-  y: -100,
-  ease: 'bounce.out'
-}).to('#controller', {
-  duration: 2,
-  y: 100,
-  ease: 'bounce.in'
-}).to('#pencil', {
-  duration: -1,
-  x: 10,
-  stagger: 0.1,
-  ease: 'ease',
-})
+[
+  { name: '--banner-link-begin', value:'#ff905c' },
+  { name: '--banner-link-end', value:'#ed027c' },
+].forEach((propertyDefinition) => {
+  CSS.registerProperty({
+    name: propertyDefinition.name,
+    inherits: false,
+    syntax: '<color>',
+    initialValue: propertyDefinition.value,
+  })
 });
 
 (() => {
