@@ -1,8 +1,4 @@
-/* :root {
-  interpolate-size: allow-keywords;
-} */
-
-html {
+:root {
   font-size: 120%;
 }
 

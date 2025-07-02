@@ -1,6 +1,6 @@
 .accordion__container {
   max-inline-size: 30rem;
-  interpolate-size: allow-keywords;
+  /* interpolate-size: allow-keywords; */
 }
 
 .accordion {
@@ -11,7 +11,7 @@
   position: relative;
   background-color: var(--background-color);
   color: var(--text-color);
-  
+
   &::before {
     content: "";
     position: absolute;
@@ -19,20 +19,20 @@
     inline-size: var(--belt-width);
     background-color: var(--belt-color);
   }
-  
+
   &:first-child {
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
-    
+
     &::before {
       border-top-left-radius: var(--radius);
     }
   }
-  
+
   &:last-child {
     border-bottom-left-radius: var(--radius);
     border-bottom-right-radius: var(--radius);
-    
+
     &::before {
       border-bottom-left-radius: var(--radius);
     }
@@ -66,26 +66,26 @@
 
   .accordion__content {
     overflow: hidden;
-    display: grid;
     block-size: 0;
-
-    grid-template-columns: 7.5rem 1fr;
-    grid-column-gap: 1.5rem;
-    align-items: center;
     padding-inline: 2rem;
-
     transition: block-size 0.3s var(--ease-out-expo);
 
-    /* @starting-style을 적용하면 transition, animation의 시작 첫 프레임에 설정할 스타일을 지정할 수 있음 */
+    .accordion__inner {
+      display: grid;
+      grid-template-columns: 7.5rem 1fr;
+      grid-column-gap: 1.5rem;
+      align-items: center;
+      padding-block-end: 1.5rem;
+    }
+
+    /* 규칙: 트랜지션, 애니메이션의 시작 첫 프레임에 설정할 스타일을 지정 */
     @starting-style {
       block-size: 0;
-      padding-block-end: 0;
     }
-    
+
     .is-open & {
-      /* 0 -> auto 계산 못 함 / 오늘날 최신 브라우저는 보간(사이를 채우다, interpolation) 계산 가능 */
+      /* 0 → auto : [과거] 변경 사이즈 계산 못함 / [최신] 사이즈 보간(사이를 채우다, interpolation) 계산 가능 */
       block-size: auto;
-      padding-block-end: 1.5rem;
     }
 
     p {
@@ -94,5 +94,3 @@
     }
   }
 }
-
-
