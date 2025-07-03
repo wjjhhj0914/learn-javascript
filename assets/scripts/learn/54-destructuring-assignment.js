@@ -121,7 +121,7 @@
 
   const colourHexCode = rgbToHex([255, 120, 120]);
   console.log(colourHexCode);
-})();
+});
 
 // 배열 타입 함수 매개변수 영역에서 바로 구조 분해 할당
 (() => {
@@ -135,4 +135,33 @@
 
   const colourHexCode = rgbToHex([255, 120, 120]);
   console.log(colourHexCode);
+});
+
+// 구조 분해 할당된 변수의 기본 값 설정
+(() => {
+  // 배열 구조 분해 할당 기본 값 설정 예
+  const emojiList = [
+    '👍',
+    '👉',
+  ];
+
+  // 배열 구조 분해 할당
+  const [firstEmoji, secondEmoji = '🐶'] = emojiList;
+  console.log(firstEmoji);
+  console.log(secondEmoji);
+
+
+  // 객체 구조 분해 할당 기본 값 설정 예
+  const course = {
+    name: 'JavaScript Fundamental'
+  };
+
+  // 객체 구조 분해 할당
+  const { name, price = '30,000', instructor = '야무' } = course; // { name, price, instructor ...}
+  // if (price === undefined) price = 30000;
+  // if (instructor === undefined) instructor = '야무';
+
+  console.log(name);
+  console.log(price);
+  console.log(instructor);
 })();
