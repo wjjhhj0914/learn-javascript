@@ -46,16 +46,63 @@
 
   <script>
     {
-      // ------------------------------------------------------------------------------
+      // -----------------------------------------------------------------------------
       // 사용자 정보 생성
-      // ------------------------------------------------------------------------------
+      // -----------------------------------------------------------------------------
       // 사용자 정보(이름, 이메일, 거주지)를 입력하고 생성 버튼을 누르면 화면의 인명부에 추가되되록 구현합니다.
       // - 폼의 `submit` 이벤트를 리스닝하는 핸들러를 작성합니다.
       // - createUser 함수를 작성해 활용합니다. (함수 매개변수 기본값 설정)
       // - render 함수를 작성해 테이블의 `<tbody>` 요소를 업데이트합니다.
 
-      
-      
+      const practice = document.getElementById('practice2');
+      const form = practice.querySelector('form');
+      const table = practice.querySelector('table');
+
+      form.addEventListener('submit', handleRenderTable);
+
+      function handleRenderTable(e) {
+        e.preventDefault();
+        // 폼 컨트롤 요소들을 수집
+        const formElements = e.currentTarget.elements;
+        // 구조 분해 할당 수집된 요소들의 순서에 맞춰 분해된 요소를 변수에 할당
+        const [userNameInput, userEmailInput, userLocationInput] = formElements;
+        // 사용자가 입력한 값 읽기
+        const userNameValue = userNameInput.value.trim();
+        const userEmailValue = userEmailInput.value.trim();
+        const userLocationValue = userLocationInput.value.trim();
+        // 사용자가 입력한 값 확인
+        // console.log(userNameValue);
+        // console.log(userEmailValue);
+        // console.log(userLocationValue);
+        // 새로운 사용자 생성
+        const newUser = createUser(userNameValue, userEmailValue, userLocationValue);
+        
+        // 테이블 렌더링 (DOM 업데이트 -> 화면 변경)
+        render(newUser);
+
+        // 초기화
+        userNameInput.value = '';
+        userEmailInput.value = '';
+        userLocationInput.value = '서울';
+      }
+
+      function render({ name, email, location }) {
+        const [nameCell, emailCell, locationCell] = table.querySelectorAll('tbody td');
+        nameCell.textContent = name;
+        emailCell.textContent = email;
+        locationCell.textContent = location;
+      }
+
+      function createUser(nameValue, emailValue, locationValue = 'Seoul') {
+        const user = {
+          name: nameValue,
+          email: emailValue,
+          location: locationValue,
+        }
+        return user;
+      }
+
+      render({ name: 'A', email: 'B', location: 'C' });
     }
   </script>
 </body>
