@@ -46,4 +46,35 @@
   // for (const key of cssMap) {
   //   console.log(key);
   // }
+});
+
+// Object.keys()
+// Object.values()
+(() => {
+  const cssMap = {
+    'display': 'grid',
+    'font-size': '48px',
+    'margin-block-end': '40px',
+    'gap': '12px',
+  };
+
+  // 객체 -> 배열
+  console.log(Object.keys(cssMap));
+  console.log(Object.values(cssMap));
+  console.log(Object.entries(cssMap));
+
+  // 객체 순환해서 속성 및 값을 확인하려면
+  // 객체 -> 배열 -> for...of 문
+
+  for (const [key, value] of Object.entries(cssMap)) {
+    console.log([key, value]);
+  }
+
+  for (const key of Object.keys(cssMap)) {
+    console.log(key);
+  }
+
+  for (const value of Object.values(cssMap)) {
+    console.log(value);
+  }
 })();
