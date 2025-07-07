@@ -64,4 +64,53 @@
   })
   console.log(newPeople);
   console.log(people);
+});
+
+// forEach() vs. map()
+(() => {
+  const numbers = [3, 6, 9];
+
+  // 배열 순환 용도
+  const forEachResult = numbers.forEach((n) => {
+    return n ** 2;
+  });
+  console.log(forEachResult);
+
+  // 배열 순환한 후에 새로운 배열 반환 용도
+  const mapResult = numbers.map((n) => {
+    return n ** 2;
+  });
+  console.log(mapResult);
+});
+
+// 용도별 함수 작성 방법 비교: loop() vs. sum()
+(() => {
+  const numbers = [2, 5, 7, 8, 12, 32, 44, 59];
+
+  // 배열 순환해서 값 계산용
+  let total = sum(...numbers);
+  console.log({total});
+
+  // 배열 순환용
+  let loopResult = loop(...numbers);
+  console.log({loopResult});
+
+  // map() 메서드와 유사
+  function sum(...numbers) {
+    let total = 0;
+    
+    for (let i = 0, l = numbers.length; i < l; i++) {
+      total += numbers[i];
+    }
+    
+    return total;
+  }
+
+  // forEach() 메서드와 유사
+  function loop(...numbers) {
+    for (let i = 0, l = numbers.length; i < l; i++) {
+      console.log(numbers[i]);
+    }
+    // return undefined
+  }
 })();
