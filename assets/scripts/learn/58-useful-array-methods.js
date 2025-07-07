@@ -102,7 +102,6 @@
     for (let i = 0, l = numbers.length; i < l; i++) {
       total += numbers[i];
     }
-    
     return total;
   }
 
@@ -113,4 +112,43 @@
     }
     // return undefined
   }
+});
+
+// 용도별 함수 작성 방법 비교: loop() vs. sum()
+(() => {
+  const oneTwoThreeFour = ['one', 'two', 'three', 'four'];
+
+  const forEachResult = forEach(oneTwoThreeFour, (item, index, list) => {
+    console.log(list);
+    console.log(index, item);
+  });
+  console.log(forEachResult);
+
+  const mapResult = map(oneTwoThreeFour, (item, index, list) => {
+    console.log(list);
+    console.log(index, item);
+    return item.repeat(2);
+  });
+  console.log({mapResult});
+
+  console.log({oneTwoThreeFour});
+
+  function forEach(list, callback) {
+    for (let index = 0; index < list.length; index= index + 1) {
+      const item = list.at(index);
+      callback(item, index, list);
+    }
+    // return undefined
+  }
+
+  function map(list, callback) {
+    const mapResult = [];
+    
+    for (let index = 0, length = list.length; index < length; index += 1) {
+      const item = list.at(index);
+      mapResult.push(callback(item, index, list));
+    }
+    return mapResult;
+  }
+  
 })();
