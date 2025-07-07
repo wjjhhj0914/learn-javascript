@@ -1,8 +1,8 @@
 // 🚀 유용한 배열 메서드
 // -------------------------------------------------------------
 
+// Array의 findIndex() 메서드
 (() => {
-  // Array의 findIndex() 메서드
   const people = [
     { id: 1, name: '지훈' }, // index: 0
     { id: 2, name: '아름' }, // index: 1
@@ -14,4 +14,16 @@
     return person.name === '다름'; // 없으면 -1 반환
   })
   console.log(foundIndex); // 1
+});
+
+// find() 메서드
+(() => {
+  const people = [
+    { id: 1, name: '지훈' }, // index: 0
+    { id: 2, name: '아름' }, // index: 1
+    { id: 3, name: '한영' }, // index: 2
+  ];
+
+  const hanyoung = people.find((person) => person.name === '반영'); // 없으면 undefined 반환
+  console.log(hanyoung); // 인덱스 대신 항목(item)을 반환
 })();
