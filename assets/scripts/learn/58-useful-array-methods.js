@@ -143,7 +143,7 @@
 
   function map(list, callback) {
     const mapResult = [];
-    
+
     for (let index = 0, length = list.length; index < length; index += 1) {
       const item = list.at(index);
       mapResult.push(callback(item, index, list));
@@ -151,4 +151,28 @@
     return mapResult;
   }
   
+});
+
+// GSAP 메서드 체이닝
+(() => {
+  /* global gsap */
+  const tl = gsap.timeline({
+    defaults: { opacity: 0, y: -100, scale: 0 }
+  });
+
+  tl.to('h1', { y: 0, scale: 1 }) // 반환값 : Timeline {to, from, set, call, ...}
+    .to('p', { y: 0, scale: 1 }, '+=0.4')
+});
+
+// 배열 객체의 메서드 체이닝
+(() => {
+  const numbers = ['one', 'two', 'three'];
+  const doubleNumbers = numbers.filter(n => n > 1).map(n => n.repeat(2)).map(n => n.toUpperCase());
+  console.log(doubleNumbers);
+
+  // const filterNumbers = numbers.filter(n => n > 1);
+  // console.log(filterNumbers); // [2, 3]
+
+  // const squartNumbers = filterNumbers.map(n => n ** 2);
+  // console.log(squartNumbers); // [4, 9]
 })();
