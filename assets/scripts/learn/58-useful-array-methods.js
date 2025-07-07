@@ -26,4 +26,20 @@
 
   const hanyoung = people.find((person) => person.name === '반영'); // 없으면 undefined 반환
   console.log(hanyoung); // 인덱스 대신 항목(item)을 반환
+});
+
+// filter() 메서드
+(() => {
+  const people = [
+    { id: 1, name: '최지훈' }, // index: 0
+    { id: 2, name: '박아름' }, // index: 1
+    { id: 3, name: '박한영' }, // index: 2
+  ];
+
+  // 사람들 중에 성이 박으로 시작하는 사람들(집합, 배열)을 거르고 싶음!
+  const parkPeople = people.filter((person) => person.name.startsWith('박'));
+  console.log(parkPeople);
+
+  const unknownPersons = people.filter((p) => p.name === '이한준');
+  console.log(unknownPersons); // 없으면 빈 배열 반환
 })();
