@@ -42,4 +42,26 @@
 
   const unknownPersons = people.filter((p) => p.name === '이한준');
   console.log(unknownPersons); // 없으면 빈 배열 반환
+});
+
+// map() 메서드
+(() => {
+  const people = [
+    { id: 1, name: '지훈' }, // index: 0
+    { id: 2, name: '아름' }, // index: 1
+    { id: 3, name: '한영' }, // index: 2
+  ];
+
+  // 사람들을 순환해서 모두의 직업을 설정한 새 배열 반환 (원본 보존)
+  const newPeople = people.map((person) => {
+    // 이전 메모리 주소 상의 객체가 아닌, 새 객체를 생성 (person 객체 복제)
+    const newPerson = { ...person };
+
+    // 이전의 사람에 새로운 데이터를 추가해서 반환
+    newPerson.name = '김' + newPerson.name;
+    newPerson.job = '프론트엔드 개발자';
+    return newPerson;
+  })
+  console.log(newPeople);
+  console.log(people);
 })();
