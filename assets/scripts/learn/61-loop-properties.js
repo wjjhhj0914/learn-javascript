@@ -1,7 +1,7 @@
 // 🚀 객체 속성 순환
 // -------------------------------------------------------------
 
-// for...in 문 (성능상 객체에서만 사용 권장)
+// for...in 문 (성능상 객체에서만 사용 권장) <- 전통적인 방식
 (() => {
   const cssMap = {
     'display': 'grid',
@@ -77,4 +77,14 @@
   for (const value of Object.values(cssMap)) {
     console.log(value);
   }
+
+  Object.entries(cssMap).forEach(([key, value]) => {
+    console.log(key, value);
+  });
+  Object.keys(cssMap).forEach((key) => {
+    console.log(key);
+  });
+  Object.values(cssMap).forEach((value) => {
+    console.log(value);
+  });
 })();
