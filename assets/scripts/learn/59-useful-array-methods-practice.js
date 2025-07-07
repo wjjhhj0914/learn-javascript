@@ -42,5 +42,19 @@
 
     const findUser = users.find((user) => user.nationality === nationality);
     console.log(findUser ? findUser.name : '그런 사람은 없습니다.'); // 올리비아
+  });
+
+  // [실습] 3. 국적 일치, 사용자 그룹 출력
+  // 국적을 입력한 후, `이름 확인` 버튼을 누르면 결과가 화면에 출력되도록 구현합니다.
+  // - `users` 배열의 각 항목과 비교해 일치할 경우, 국적을 필터링한 사용자 그룹 출력
+  // - `<option>` 요소의 `value` 값이 빈 문자열인 경우, 모든 사용자를 포함한 그룹 출력
+  // - 사용자 그룹 출력 시, `JSON.stringify(filteredUsers, null, 2)` 구문 활용
+  (() => {
+    let selectedValue = '영국';
+    const filteredUsers = users.filter(user => {
+      return user.nationality === selectedValue;
+    });
+    // document.body.innerHTML = `<pre>${JSON.stringify(filteredUsers, null, 2)}</pre>`;
+    console.log(JSON.stringify(filteredUsers, null, 2));
   })();
 }
