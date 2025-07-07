@@ -27,11 +27,20 @@
     { id: 25, name: '하나', location: '상하이', nationality: '중국' },
   ];
 
+  // [실습] 1. 거주지 일치, 인덱스 출력
   (() => {
     let location = '런던';
 
     let foundMatchIndex = users.findIndex(user => user.location === location);
     const matchIndexUser = users[foundMatchIndex];
     console.log(matchIndexUser);
+  });
+
+  // [실습] 2. 국적 일치, 사용자 이름 출력
+  (() => {
+    let nationality = '아프리카';
+
+    const findUser = users.find((user) => user.nationality === nationality);
+    console.log(findUser ? findUser.name : '그런 사람은 없습니다.'); // 올리비아
   })();
 }
