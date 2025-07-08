@@ -258,7 +258,7 @@ function getKiwiCount(fruitsBasket) {
         console.log(subjectCountObject)
   });
 
-})()
+})
 
 
 // --------------------------------------------------------------------------
@@ -281,20 +281,19 @@ function getKiwiCount(fruitsBasket) {
     { id: 9, name: '서윤호', email: 'yunho.seo@example.com', isPresent: true },
     { id: 10, name: '배예진', email: 'yejin.bae@example.com', isPresent: false },
   ]
-  
-  console.log(students)
 
   // 1. 명령형 코드
   ;(() => {
     
-  })()
+  })
 
   // 2. 선언적 코드
   ;(() => {
-    
+    const attendance = students.filter(({ isPresent }) => isPresent);
+    console.log(attendance.length);
   })
 
-})
+})()
 
 // 판매 가능한 상품명 출력
 // 재고가 있는 상품만 걸러내 상품명을 콘솔 패널에 출력하세요.
@@ -317,11 +316,13 @@ function getKiwiCount(fruitsBasket) {
 
         // 1. 명령형 코드
         ; (() => {
-    
+
         })()
 
         // 2. 선언적 코드
         ; (() => {
-    
-        })
-    })
+          products
+            .filter(({ stock }) => stock > 0)
+            .forEach(({ name }) => console.log(name));
+        })()
+    })()
