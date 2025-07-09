@@ -161,7 +161,36 @@
           email: "jisu.seo@example.com",
           phone: "010-0123-4567"
         }
-      ]
+      ];
+
+      // DocumentFragment 객체 활용
+      // 문서 객체 생성
+      const _dom = document.createDocumentFragment();
+      console.log(_dom);
+
+      // users 데이터 순환
+      // for (const { name } of users) {
+      //   container.insertAdjacentHTML('beforeend', `<li>${name}</li>`)
+      // }
+
+
+      const practice = document.getElementById('practice1');
+      const form = practice.querySelector('form');
+      
+      const fragment = document.createDocumentFragment();
+      
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const [nameInput] = form.elements;
+        const username = nameInput.value.trim();
+        if (!username) return;
+        // append() 활용
+        const userItem = document.createElement('li');
+        userItem.textContent = username;
+        form.nextElementSibling.append(userItem);
+        nameInput.value = '';
+        nameInput.focus();
+      })
 
     })()
   </script>
@@ -233,6 +262,26 @@
           }
         ]
 
+        const practice = document.getElementById('practice2')
+        const button = practice.querySelector('button')
+        const menu = practice.querySelector('.menu')
+
+        const menuItemsTemplate = todaysMenu.reduce((acc, { name, price, ingredients }) => {
+          return acc + /* html */`
+    <li>
+      <h3>${name}</h3>
+      <p>
+        <span class="price">${price.toLocaleString()}원</span>
+        <span class="divider" role="none">|</span>
+        <span class="ingredients">(${ingredients.join(', ')})</span>
+      </p>
+    </li>
+  `
+        }, '')
+
+        button.addEventListener('click', () => {
+          menu.innerHTML = menuItemsTemplate
+        })
       })()
   </script>
 
@@ -241,6 +290,7 @@
   <section id="practice3">
     <h3>상품 리뷰</h3>
     <button type="button">리뷰 불러오기</button>
+    <!-- 새 리뷰 글 추가 -->
     <ul class="comments">
       <li>배송도 빠르고 포장도 꼼꼼했어요. 맛도 기대 이상입니다!</li>
       <li>양이 많고 간도 딱 좋네요. 가족끼리 먹기 좋아요.</li>
@@ -285,6 +335,34 @@
           }
         ]
 
+        const reviews = newReviews.map(({ content }) => {
+          const element = document.createElement('li')
+          element.textContent = content
+          return element
+        })
+
+        const fragment = document.createDocumentFragment()
+        fragment.append(...reviews)
+
+        document.querySelector('#practice3 button')
+          .addEventListener('click', (e) => {
+            e.currentTarget.nextElementSibling.prepend(...fragment.children)
+        })
+        // const practice = document.getElementById('practice3');
+        // const button = practice.querySelector('button');
+        // const commentList = practice.querySelector('.comments');
+
+        // button.addEventListener('click', () => {
+        //   const fragment = document.createDocumentFragment();
+
+        //   newReviews.forEach(review => {
+        //     const li = document.createElement('li');
+        //     li.textContent = review.content;
+        //     fragment.prepend(li); // 새 리뷰가 위에 오도록
+        //   })
+        //   commentList.prepend(fragment);
+        //   button.disabled = true;
+        // })
       })()
   </script>
 
