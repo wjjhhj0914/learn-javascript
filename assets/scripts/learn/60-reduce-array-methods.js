@@ -40,6 +40,7 @@
   function sumReduce(...numbers) {
     return numbers.reduce((total, number) => total + number, 0);
   }
+  sumReduce();
 });
 
 // 배열 -> 누산된 객체
