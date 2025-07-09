@@ -106,8 +106,9 @@
       //   }
       //   headline.textContent = headlines[index];
         // index++;
-      // })
-    })()
+      })
+      button.click();
+    })
   </script>
 
   <hr />
@@ -121,12 +122,20 @@
       // 실습 2. 카드 추가
       // 사용자가 버튼을 클릭하면 프로필 카드가 화면에 표시되도록 구현합니다.
       ; (() => {
+        const practice = document.getElementById('practice2');
+        const card = practice.querySelector('.profile-card');
+        const button = card.previousElementSibling;
+        
+        button.addEventListener('click', () => {
+          const cardTemplate = `
+            <h2>박상현</h2>
+            <p>프론트엔드 개발자</p>
+          `;
 
-        const cardTemplate = `
-          <h2>박상현</h2>
-          <p>프론트엔드 개발자</p>
-        `
+          card.innerHTML = cardTemplate;
+          // button.disabled = true;
 
+        }, { once: true });
       })()
   </script>
 
