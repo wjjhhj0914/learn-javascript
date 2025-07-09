@@ -76,6 +76,37 @@
         '일기 쓰기'
       ]
 
+      const practice = document.getElementById('practice1');
+      const form = practice.querySelector('form');
+      const todoInput = form.elements[0]; // HTMLFormControlsCollection
+      // const [todoInput] = form.elements;
+      const todoList = form.nextElementSibling;
+      // const todoList = practice.querySelector('.todo-list');
+      
+      form.addEventListener('submit', (e) => {
+        // 기본 작동 방지
+        e.preventDefault();
+
+        todoInput.value.trim();
+        
+        // // 사용자 입력한 오늘 할 일
+        // const todoContent = todoInput.value.trim();
+        // if (!todoContent) return;
+
+        // // 동적으로 <li> 요소 생성
+        // const todoItem = document.createElement('li');
+        // todoItem.textContent = todoContent;
+        // console.log(todoItem);
+        
+        // // 동적 생성된 <li> 요소를 <ul> 요소의 마지막 자식 요소로 삽입
+        // todoList.appendChild(todoItem);
+
+        // // 사용자 경험(UX) 향상
+        // // 할 일 입력 필드 비우기 (초기화)
+        // todoInput.value = '';
+        // // 입력 필드에 초점 이동
+        // todoInput.focus();
+      })
     })()
   </script>
 
@@ -121,7 +152,15 @@
       // "다른 목록으로 이동" 버튼을 클릭하면 
       // "망고"를 "안 좋아하는 과일" 목록으로 이동하는 코드를 작성합니다.
       ; (() => {
+        const fruitsThatILike = document.querySelector('.fruits-i-like');
+        const fruitsThatIDontLike = document.querySelector('.fruits-i-dont-like');
+        const button = document.querySelector('#practice3 button');
 
+        button.addEventListener('click', () => {
+          const insertFruit = fruitsThatILike.lastElementChild;
+          const targetFruit = fruitsThatIDontLike.firstElementChild;
+          targetFruit.parentElement.insertBefore(insertFruit, targetFruit);
+        }, { once: true });
       })()
   </script>
 
