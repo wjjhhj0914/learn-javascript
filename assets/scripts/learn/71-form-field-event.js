@@ -55,3 +55,30 @@
 })();
 
 });
+
+// Radio Button
+// name 값 동일
+// .value
+// .checked
+(() => {
+  const form = document.querySelector('.form');
+
+  const radios = [...form.querySelectorAll('[type="radio"]')];
+  console.log(radios.filter(radio => radio.checked));
+  
+  // const [appleRadio, grapeRadio] = form.elements;
+  // console.log(appleRadio.value); // value가 설정되어 있지 않으면 on을 가져 옴.
+  // console.log(appleRadio.checked);
+  // console.log(grapeRadio.value);
+  // console.log(grapeRadio.checked);
+});
+
+// textarea
+(() => {
+  const form = document.querySelector('.form');
+
+  // <textarea> 요소의 값 쓰기
+  form.comment.value = `제품이 가벼워 휴대하기 좋네요. 추천합니다! 😃 `;
+  // <textarea> 요소의 값 읽기
+  console.log(form.comment.value.trim());
+})();
