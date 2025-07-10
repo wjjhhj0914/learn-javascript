@@ -74,40 +74,51 @@
         '스트레칭이나 요가 하기',
         '집안 환기시키기',
         '일기 쓰기'
-      ]
+      ];
 
       const practice = document.getElementById('practice1');
+      const todoList = practice.querySelector('.todo-list');
       const form = practice.querySelector('form');
-      const todoInput = form.elements[0]; // HTMLFormControlsCollection
-      // const [todoInput] = form.elements;
-      const todoList = form.nextElementSibling;
-      // const todoList = practice.querySelector('.todo-list');
-      
+      const [todoInput] = form.elements; // input
+
       form.addEventListener('submit', (e) => {
-        // 기본 작동 방지
         e.preventDefault();
-
-        todoInput.value.trim();
-        
-        // // 사용자 입력한 오늘 할 일
-        // const todoContent = todoInput.value.trim();
-        // if (!todoContent) return;
-
-        // // 동적으로 <li> 요소 생성
-        // const todoItem = document.createElement('li');
-        // todoItem.textContent = todoContent;
-        // console.log(todoItem);
-        
-        // // 동적 생성된 <li> 요소를 <ul> 요소의 마지막 자식 요소로 삽입
-        // todoList.appendChild(todoItem);
-
-        // // 사용자 경험(UX) 향상
-        // // 할 일 입력 필드 비우기 (초기화)
-        // todoInput.value = '';
-        // // 입력 필드에 초점 이동
-        // todoInput.focus();
+        const newTodoItem = document.createElement('li');
+        newTodoItem.textContent = todoInput.value.trim();
+        todoList.appendChild(newTodoItem);
       })
-    })()
+
+
+
+      // const practice = document.getElementById('practice1')
+      // const todoList = practice.querySelector('.todo-list')
+      // const form = practice.querySelector('form')
+      // // console.dir(form) // HTMLFormElement { childNodes, children, elements }
+      // // console.log(form.elements) // HTMLFormContorlsCollection (유사 배열 객체)
+      // // const [input, button] = form.elements
+      // const [todoInput] = form.elements
+      // // const todoInput = form.elements[0]
+
+      // form.addEventListener('submit', (e) => {
+      //   // 기본 작동 방지
+      //   e.preventDefault()
+
+      //   const newTodoItem = document.createElement('li')
+      //   newTodoItem.textContent = todoInput.value.trim()
+      //   // <li>가족과 대화 나누기</li>
+
+      //   todoList.appendChild(newTodoItem)
+      //   // <ul class="todo-list">
+      //   //   <li>배고프면 점심 먹기!</li>
+      //   //   <li>가족과 대화 나누기</li>
+      //   // </ul>
+
+      //   todoInput.value = ''
+      //   todoInput.focus()
+
+      })
+
+    // })()
   </script>
 
   <hr />
@@ -117,6 +128,7 @@
     <button type="button">"면을 넣고" 앞에 추가</button>
     <ol class="recipe-list">
       <li>물을 냄비에 붓고 끓입니다.</li>
+      <!-- 여기에 동적으로 생성된 요소를 삽입합니다. -->
       <li>면을 넣고 3~4분간 끓입니다.</li>
     </ol>
   </section>
@@ -126,14 +138,31 @@
       // "면을 넣고" 앞에 추가 버튼을 누르면 "물이 끓으면 스프를 넣습니다." 항목을 
       // "면을 넣고" 항목 앞에 추가하는 코드를 작성합니다.
       ; (() => {
+        const practice = document.getElementById('practice2')
+        const recipeList = practice.querySelector('.recipe-list')
 
+        // 이벤트 위임
+        practice.addEventListener('click', ({ target }) => {
+          // 가장 가까운 선택자와 일치하는 요소를 찾기 (버튼 포함)
+          const button = target.closest('button')
+          // 빠른 반환
+          if (!button) return
+
+          // 동적 요소 생성
+          const recipeItem = document.createElement('li')
+          recipeItem.textContent = '물이 끓으면 스프를 넣습니다.'
+
+          // 특정 요소 앞에 동적 생성된 요소 삽입
+          recipeList.insertBefore(recipeItem, recipeList.lastElementChild)
+
+        })
       })()
   </script>
 
   <hr />
 
   <div id="practice3">
-    <button type="button">다른 목록으로 이동</button>
+    <button type="button">"망고"를 "포도" 앞으로 이동</button>
 
     <h2>🍉 좋아하는 과일</h2>
     <ol class="fruits-i-like">
@@ -149,18 +178,21 @@
 
   <script>
       // 실습 3. 다른 목록으로 이동
-      // "다른 목록으로 이동" 버튼을 클릭하면 
+      // '"망고"를 "포도" 앞으로 이동' 버튼을 클릭하면 
       // "망고"를 "안 좋아하는 과일" 목록으로 이동하는 코드를 작성합니다.
+      // "포도" 앞에 "망고"를 삽입
+      // 1회만 클릭 이벤트가 작동
       ; (() => {
-        const fruitsThatILike = document.querySelector('.fruits-i-like');
-        const fruitsThatIDontLike = document.querySelector('.fruits-i-dont-like');
-        const button = document.querySelector('#practice3 button');
+        const ilikeFruits = document.querySelector('.fruits-i-like')
+        const idontlikeFruits = document.querySelector('.fruits-i-dont-like')
+        const button = document.querySelector('#practice3 button')
 
         button.addEventListener('click', () => {
-          const insertFruit = fruitsThatILike.lastElementChild;
-          const targetFruit = fruitsThatIDontLike.firstElementChild;
-          targetFruit.parentElement.insertBefore(insertFruit, targetFruit);
-        }, { once: true });
+          const insertFruit = ilikeFruits.lastElementChild
+          const targetFruit = idontlikeFruits.firstElementChild
+          targetFruit.parentElement.insertBefore(insertFruit, targetFruit)
+        }, { once: true })
+
       })()
   </script>
 
