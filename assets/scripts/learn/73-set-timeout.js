@@ -69,12 +69,50 @@
   //   countDown();
   // }
 
-})();
+});
 
 // Throttling
+// 특정 함수의 실행 빈도를 제한하는 방법으로, 스크롤 이벤트나 창 크기 조절 같은 빈번한 이벤트 처리에 유용함.
 (() => {
+  function throttle(callback, delay = 400) {
+    // 조건 처리를 위한 지역 변수
+    let timeout = null;
+    
+    // 함수 내부에서 다른 함수 반환 (이벤트 리스너로 추가되는 함수)
+    return function (...args) {
+      // console.log(args); 
+      if (!timeout) {
+        timeout = setTimeout(() => {
+          // throttle 함수 실행 과정에서 전달된 콜백 실행
+          callback(...args) // callback(arg1, arg2, ..., argN)
 
-});
+          // timeout 초기화
+          timeout = null;
+        }, delay)
+      }
+    }
+  }
+
+  // throttle 함수 사용 전
+  // window     - 브라우저 환경에서의 전역 객체
+  // global     - Node.js 환경에서의 전역 객체
+  // globalThis - 환경(window + global) 통합적인 전역 객체
+  
+  
+  // 스크롤할 때마다 콜백 실행
+  let throttleCount = 0;
+  function handleScrollNoThrottle() {
+    console.log(`noThrottleCount = ${noThrottleCount++}`, 'color: red')
+  }
+  globalThis.addEventListener('scroll', handleScrollNoThrottle);
+
+  // 쓰로틀 조정으로 0.5초 간격으로 콜백 실행
+  let noThrottleCount = 0;
+  const handleScrollThrottle = throttle(() => {
+    console.log(`throttleCount = ${throttleCount++}`, 'color: blue')
+  }, 500);
+  globalThis.addEventListener('scroll', handleScrollThrottle);
+})();
 
 // Debouncing
 (() => {
