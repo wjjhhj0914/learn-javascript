@@ -7,19 +7,37 @@
   
   // 12. 할 일 제거 버튼 click 이벤트 리스너 추가 (개별)
   // 할 일 제거 버튼 찾기
-  const removeButtons = todoList.querySelectorAll('button');
+  
+  // 14. 이벤트 위임 방식을 사용해, 동적 생성된 할 일 요소의 삭제 기능이 처리되도록 구현
+  todoList.addEventListener('click', ({ currentTarget: list, target }) => {
+    const removeButton = target.closest('[aria-label="할 일 삭제"]');
+
+    if (!removeButton) return;
+
+    // 삭제 기능 작동 (할 일 요소 제거)
+    const willRemoveTaskElement = removeButton.closest('.task');
+    // willRemoveTaskElement.parentElement.removeChild(willRemoveTaskElement);
+    willRemoveTaskElement.remove();
+
+    // 15. 할 일 목록 내부에 아무런 자식 요소가 없다면, <ul> 요소 내부에 공백이 없도록 구성
+    // 이유: 사용자에게 새 할 일 추가에 관한 안내 사항을 표시하기 위해서
+    if (list.children.length === 0) list.innerHTML = '';
+  })
+  
   
   // 13. 찾은 제거 버튼(들) 순환
-  removeButtons.forEach((button) => {
-    // 할 일 제거 버튼 click 이벤트 리스너 추가 (개별)
-    button.addEventListener('click', (e) => {
-      const taskElement = e.currentTarget.closest('.task');
-      // 제거 방법 1
-      // taskElement.parentElement.removeChild(taskElement);
-      // 제거 방법 2
-      taskElement.remove();
-    })
-  })
+  // const removeButtons = todoList.querySelectorAll('button');
+  // removeButtons.forEach((button) => {
+  //   // 할 일 제거 버튼 click 이벤트 리스너 추가 (개별)
+  //   button.addEventListener('click', (e) => {
+  //     const taskElement = e.currentTarget.closest('.task');
+  //     // 제거 방법 1
+  //     // taskElement.parentElement.removeChild(taskElement);
+  //     // 제거 방법 2
+  //     taskElement.remove();
+  //   })
+
+  
   
   // 2. 폼 요소에 submit 이벤트 리스너 추가
   todoListForm.addEventListener('submit', (e) => {
