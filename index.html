@@ -9,39 +9,133 @@
   <link rel="icon" href="./assets/images/ecmascript-logo.png" />
   <link rel="stylesheet" href="./assets/styles/main.css" />
   <script src="https://cdn.jsdelivr.net/npm/gsap/dist/gsap.min.js"></script>
-  <script src="./assets/scripts/learn/71-form-field-event.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
+  <script src="./assets/scripts/learn/72-xss-sanitize.js" defer></script>
 </head>
 
 <body>
 
   <h1>JavaScript</h1>
 
-  <form class="form">
-    <p>어떤 과일을 좋아하세요? (하나만 체크 가능)</p>
-    <div class="radio-button">
-      <input type="radio" name="favorite-fruit" id="apple" value="사과" checked />
-      <label for="apple">🍎 사과</label>
-    </div>
-    <div class="radio-button">
-      <input type="radio" name="favorite-fruit" id="grape" value="포도" />
-      <label for="grape">🍇 포도</label>
-    </div>
-    <div class="radio-button">
-      <input type="radio" name="favorite-fruit" id="lemon" value="레몬" />
-      <label for="lemon">🍋 레몬</label>
-    </div>
-    <div class="radio-button">
-      <input type="radio" name="favorite-fruit" id="none" value="없음" />
-      <label for="none">😝 없음</label>
-    </div>
-
-    <div class="textarea" style="display: flex; flex-direction: column; gap: 8px; margin-block: 20px;">
-      <label for="comment">댓글</label>
-      <textarea id="comment" name="comment" placeholder="댓글을 작성해주세요." cols="30" rows="5"></textarea>
-    </div>
+  <form style="display: flex; flex-direction: column; align-items: start; gap: 8px;">
+    <label for="text">텍스트</label>
+    <textarea name="text" id="text" cols="40" rows="6"></textarea>
+    <button type="submit">출력</button>
   </form>
   
+  <output></output>
+<!-- 
+  // append()와
+  // appendChild()의 차이에 대해 한 번 더 설명 듣고 싶습니다.
+  
+  // 예) 포유류.새끼를낳다()
+  // 단 하나의 자식만 Node의 마지막 자식 노드로 삽입할 수 있음
+  // 삽입된 단 하나의 자식 노드를 반환
+  // 삽입 가능한 노드 타입은 노드 객체(Node Object)
+  // 메서드 체이닝 가능
+  // Node.appendChild(aChild)
+  
+  // 예) 사람.생각하고기록한다()
+  // 하나 이상 여러 자식들을 모두 Element의 마지막 자식 뒤에 삽입할 수 있음
+  // 삽입 가능한 노드의 타입은 요소(ElementNode) 또는 텍스트(TextNode)
+  // 반환 값이 없다. (undefined 암묵적으로 반환됨)
+  // 메서드 체이닝 불가능
+  // Element.append(child1, child2, ..., childN)
+  // Element.append(...children)
+   -->
+
+   <!-- 
+   ;(() => {
+  // 옵셔널 체이닝 (Optional Chaining)
+  // ?.
+  // - 선택적 연결 구문 (조건 처리)
+
+  const o = {
+    name: 'coffee',
+    getName() {
+      return this.name
+    } 
+  }
+
+  // 속성
+  console.log(o.amount)
+  console.log(o.isExist)
+  
+  // 메서드
+  // 메서드 실행 전에 해당 메서드를 객체가 가지고 있는 지 검사 (필수!)
+  
+  // 옵셔널 체이닝을 사용하지 않을 때 조건 처리
+  // if (o && 'getName' in o && typeof o.getName === 'function') {
+  //   console.log(o.getName())
+  // }
+
+  // 옵셔널 체이닝을 사용할 때 조건 처리
+  console.log(o.getName?.())
+
+  // 옵셔널 체이닝을 사용하지 않을 때 조건 처리
+  if (o && o.getAmount && typeof o.getAmount === 'function') {
+    console.log(o.getAmount()) // TypeError: o.getAmount is not a function
+  }
+
+  // 옵셔널 체이닝을 사용할 때 조건 처리
+  console.log(o.getAmount?.())
+
+
+  // Null 병합 연산자 (Nullish coalescing operator)
+  // ??
+  // - null 또는 undefined 여부를 검토해 초깃값 설정 (조건 처리)
+
+})()
+   -->
+
+   <!-- 
+   // Null 병합 연산자 (Nullish coalescing operator)
+// ??
+// - null 또는 undefined 여부를 검토해 초깃값 설정 (조건 처리)
+
+// 사용자가 설정한 값
+let customValue = 0
+
+// 시스템에서 사용될 값 (사용자가 설정한 값 > 기본값)
+let defaultValue = 5
+
+// let configValue = defaultValue
+// if (customValue) configValue = customValue
+// let configValue = !(customValue === undefined || customValue === null) ? customValue : defaultValue
+// let configValue = customValue || defaultValue
+let configValue = customValue ?? defaultValue
+
+// 시스템에서 사용되는 값은 사용자가 설정한 값이 우선한다.
+console.log({configValue})
+   -->
+  
   <main hidden>
+
+    <form class="form">
+      <p>어떤 과일을 좋아하세요? (하나만 체크 가능)</p>
+      <div class="radio-button">
+        <input type="radio" name="favorite-fruit" id="apple" value="사과" checked />
+        <label for="apple">🍎 사과</label>
+      </div>
+      <div class="radio-button">
+        <input type="radio" name="favorite-fruit" id="grape" value="포도" />
+        <label for="grape">🍇 포도</label>
+      </div>
+      <div class="radio-button">
+        <input type="radio" name="favorite-fruit" id="lemon" value="레몬" />
+        <label for="lemon">🍋 레몬</label>
+      </div>
+      <div class="radio-button">
+        <input type="radio" name="favorite-fruit" id="none" value="없음" />
+        <label for="none">😝 없음</label>
+      </div>
+    
+      <div class="textarea" style="display: flex; flex-direction: column; gap: 8px; margin-block: 20px;">
+        <label for="comment">댓글</label>
+        <textarea id="comment" name="comment" placeholder="댓글을 작성해주세요." cols="30" rows="5"></textarea>
+      </div>
+    </form>
+  
     <form action="/subscribe" method="POST">
       <div>
         <label for="email">이메일</label>
