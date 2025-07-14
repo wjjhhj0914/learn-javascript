@@ -129,4 +129,55 @@
 
   // 비동기 통신 이후, DOM 업데이트
   const reposList = document.querySelector('.repos-list')
+});
+
+(() => {
+  const reposList = document.querySelector('.repos-list')
+  const promise = fetch('https://api.github.com/users/yamoo9/repos')
+  
+  promise
+    .then((response) => response.json())
+    .then(messageTheData)
+    .then(generateTemplate)
+    .then(updateDOM)
+    .catch(catchError)
+
+
+  function messageTheData(data) {
+    return data.map(
+      ({ git_url, description, owner: { avatar_url, login } }) => {
+        return {
+          url: git_url,
+          description,
+          avatar: avatar_url,
+          account: login,
+        }
+      },
+    )
+  }
+
+  function generateTemplate(data) {
+    return data
+      .map(({ url, description, avatar, account }) => {
+        const linkContent = url.replace(/^git:\/\/|.git$/g, '')
+        const linkHref = `https://${linkContent}`
+        return `
+        <li>
+          <h3>${account}</h3>
+          <img src="${avatar}" alt="" height="40" width="40" />
+          <a href="${linkHref}">${linkContent}</a>
+          <p>${description}</p>
+        </li>
+      `
+      })
+      .join('')
+  }
+
+  function updateDOM(template) {
+    reposList.innerHTML = DOMPurify.sanitize(template)
+  }
+
+  function catchError(error) {
+    console.error(error.message)
+  }
 })();

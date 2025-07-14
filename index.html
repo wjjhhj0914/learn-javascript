@@ -10,128 +10,63 @@
   <link rel="stylesheet" href="./assets/styles/main.css" />
   <script src="https://cdn.jsdelivr.net/npm/gsap/dist/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.2.6/purify.min.js"></script>
-  <script src="./assets/scripts/learn/78-async-js-promise.js" defer></script>
+  <script src="./assets/scripts/learn/79-async-js-fetch-data.js" defer></script>
 </head>
 
 <body>
 
   <h1>JavaScript</h1>
 
-  <h2>사용자의 GitHub 저장소 목록</h2>
-  <ul class="repos-list">
-    <li>데이터를 로딩 중입니다...</li>
-  </ul>
+  <div class="demo">
+    <form autocomplete="off" novalidate>
+      <input type="search" name="search" aria-label="검색" />
+      <select name="category" aria-label="카테고리">
+        <option value="">모든 상품</option>
+        <option value="hats">모자</option>
+        <option value="sneakers">신발</option>
+        <option value="jackets">자켓</option>
+        <option value="mens">남성 의류</option>
+        <option value="womens">여성 의류</option>
+      </select>
+      <button type="submit">검색</button>
+    </form>
+    <p>총 <span class="products-count">{000}</span>개의 상품을 찾았습니다.</p>
+    <div hidden role="status" style="color: #073037; font-weight: 700; font-size: 1.45rem;">
+      데이터 로딩 중입니다...
+    </div>
+    <ul class="products" style="display: grid; grid-template-columns: repeat(4, 1fr);">
+      <li>{데이터 기반 리스트 렌더링}</li>
+    </ul>
+    <div role="alert" style="color: #db172b; font-weight: 700; font-size: 1.45rem;" hidden>
+      {오류 메시지 출력}
+    </div>
+  </div>
 
-<!-- 
-  // append()와
-  // appendChild()의 차이에 대해 한 번 더 설명 듣고 싶습니다.
-  
-  // 예) 포유류.새끼를낳다()
-  // 단 하나의 자식만 Node의 마지막 자식 노드로 삽입할 수 있음
-  // 삽입된 단 하나의 자식 노드를 반환
-  // 삽입 가능한 노드 타입은 노드 객체(Node Object)
-  // 메서드 체이닝 가능
-  // Node.appendChild(aChild)
-  
-  // 예) 사람.생각하고기록한다()
-  // 하나 이상 여러 자식들을 모두 Element의 마지막 자식 뒤에 삽입할 수 있음
-  // 삽입 가능한 노드의 타입은 요소(ElementNode) 또는 텍스트(TextNode)
-  // 반환 값이 없다. (undefined 암묵적으로 반환됨)
-  // 메서드 체이닝 불가능
-  // Element.append(child1, child2, ..., childN)
-  // Element.append(...children)
-   -->
-
-   <!-- 
-   ;(() => {
-  // 옵셔널 체이닝 (Optional Chaining)
-  // ?.
-  // - 선택적 연결 구문 (조건 처리)
-
-  const o = {
-    name: 'coffee',
-    getName() {
-      return this.name
-    } 
-  }
-
-  // 속성
-  console.log(o.amount)
-  console.log(o.isExist)
-  
-  // 메서드
-  // 메서드 실행 전에 해당 메서드를 객체가 가지고 있는 지 검사 (필수!)
-  
-  // 옵셔널 체이닝을 사용하지 않을 때 조건 처리
-  // if (o && 'getName' in o && typeof o.getName === 'function') {
-  //   console.log(o.getName())
-  // }
-
-  // 옵셔널 체이닝을 사용할 때 조건 처리
-  console.log(o.getName?.())
-
-  // 옵셔널 체이닝을 사용하지 않을 때 조건 처리
-  if (o && o.getAmount && typeof o.getAmount === 'function') {
-    console.log(o.getAmount()) // TypeError: o.getAmount is not a function
-  }
-
-  // 옵셔널 체이닝을 사용할 때 조건 처리
-  console.log(o.getAmount?.())
-
-
-  // Null 병합 연산자 (Nullish coalescing operator)
-  // ??
-  // - null 또는 undefined 여부를 검토해 초깃값 설정 (조건 처리)
-
-})()
-   -->
-
-   <!-- 
-   // Null 병합 연산자 (Nullish coalescing operator)
-// ??
-// - null 또는 undefined 여부를 검토해 초깃값 설정 (조건 처리)
-
-// 사용자가 설정한 값
-let customValue = 0
-
-// 시스템에서 사용될 값 (사용자가 설정한 값 > 기본값)
-let defaultValue = 5
-
-// let configValue = defaultValue
-// if (customValue) configValue = customValue
-// let configValue = !(customValue === undefined || customValue === null) ? customValue : defaultValue
-// let configValue = customValue || defaultValue
-let configValue = customValue ?? defaultValue
-
-// 시스템에서 사용되는 값은 사용자가 설정한 값이 우선한다.
-console.log({configValue})
-   -->
-  
   <main hidden>
 
     <h2>사용자의 GitHub 저장소 목록</h2>
     <ul class="repos-list">
       <li>데이터를 로딩 중입니다...</li>
-      <li><a href="link-to-repo-1-url">저장소 이름 (# 공개 여부)</a></li>
-      <li><a href="link-to-repo-2-url">저장소 이름 (# 공개 여부)</a></li>
-      </ul>
+    </ul>
 
-    <form style="display: flex; flex-direction: column; align-items: start; gap: 8px;">
+    <input type="search" placeholder="검색어" />
+
+    <form style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px">
       <label for="text">텍스트</label>
-      <textarea name="text" id="text" cols="40" rows="6"></textarea>
+      <textarea id="text" name="text" cols="40" rows="6"></textarea>
       <button type="submit">출력</button>
     </form>
-    
-    <output></output>  
+
+    <output></output>
 
     <form class="form">
       <p>어떤 과일을 좋아하세요? (하나만 체크 가능)</p>
       <div class="radio-button">
-        <input type="radio" name="favorite-fruit" id="apple" value="사과" checked />
+        <input type="radio" name="favorite-fruit" id="apple" value="사과" />
         <label for="apple">🍎 사과</label>
       </div>
       <div class="radio-button">
-        <input type="radio" name="favorite-fruit" id="grape" value="포도" />
+        <input type="radio" name="favorite-fruit" id="grape" value="포도" checked />
         <label for="grape">🍇 포도</label>
       </div>
       <div class="radio-button">
@@ -142,81 +77,89 @@ console.log({configValue})
         <input type="radio" name="favorite-fruit" id="none" value="없음" />
         <label for="none">😝 없음</label>
       </div>
-    
+
       <div class="textarea" style="display: flex; flex-direction: column; gap: 8px; margin-block: 20px;">
         <label for="comment">댓글</label>
         <textarea id="comment" name="comment" placeholder="댓글을 작성해주세요." cols="30" rows="5"></textarea>
       </div>
     </form>
-  
-    <form action="/subscribe" method="POST">
-      <div>
-        <label for="email">이메일</label>
-        <input type="email" name="email" id="email" placeholder="user@example.com" />
-      </div>
-      <button type="submit">구독</button>
-      <!-- <input type="submit" value="구독" /> -->
-      <div>
-        <label for="contents">콘텐츠</label>
-        <input type="text" name="contents" id="contents" placeholder="구독 메시지" />
-      </div>
-      <button type="submit">구독</button>
-      <!-- <input type="submit" value="구독" /> -->
-    </form>
-    
-    <form class="form">
-      <p>어떤 과일을 좋아하세요?</p>
-      <div class="checkbox">
-        <input type="checkbox" name="apple" id="apple" value="사과" checked />
-        <label for="apple">🍎 사과</label>
-      </div>
-      <div class="checkbox">
-        <input type="checkbox" name="grape" id="grape" />
-        <label for="grape">🍇 포도</label>
-      </div>
-      <div class="checkbox">
-        <input type="checkbox" name="lemon" id="lemon" checked />
-        <label for="lemon">🍋 레몬</label>
-      </div>
-    </form>
+
+    <!-- <form class="form">
+        <p>어떤 과일을 좋아하세요?</p>
+        <div class="checkbox">
+          <input type="checkbox" name="apple" id="apple" value="사과" checked />
+          <label for="apple">🍎 사과</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="grape" id="grape" />
+          <label for="grape">🍇 포도</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" name="lemon" id="lemon" checked />
+          <label for="lemon">🍋 레몬</label>
+        </div>
+      </form> -->
+
+    <!-- <form action="/subscribe" method="POST">
+        <div>
+          <label for="email">이메일</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="user@example.com"
+          />
+        </div>
+        <div>
+          <label for="contents">콘텐츠</label>
+          <input
+            type="text"
+            name="contents"
+            id="contents"
+            placeholder="구독 메시지"
+          />
+        </div>
+        <button type="submit">구독</button>
+      </form> -->
 
     <script>
-      const form = document.querySelector('form');
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
+      const form = document.querySelector('form')
 
-        const form = e.currentTarget;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        const form = e.currentTarget
 
         // 폼 요소 순환
 
-        // 방법 1
+        // 방법 1.
         // for (const element of form.elements) {
-        //   console.log(element);
+        //   console.log(element)
         // }
 
-        // 방법 2
-        // Array.from(form.elements).forEach((element) => console.log(element));
-        // const formElements = [...form.elements];
-        // formElements.forEach((element) => {element});
+        // 방법 2.
+        // Array.from(form.elements).forEach((element) => console.log(element))
+        // const formElements = [...form.elements]
+        // formElements.forEach((element) => console.log(element))
 
         // 폼 요소 찾는 다양한 방법
-        // console.log(form.email.value);
-        // console.log(form.contents.value);
+        // console.log(form.email.value)
+        // console.log(form.contents.value)
 
-        // console.log(form.elements);
-        // console.log(form.elements[0]);
-        // console.log(form.elements.email);
-        // console.log(form.elements[1]);
-        // console.log(form.elements.contents);
-        // console.log(form.elements[2]);
-        // console.log(form.querySelector('button[type="submit"]'));
+        // console.log(form.elements)
+        // console.log(form.elements[0])
+        // console.log(form.elements.email)
+        // console.log(form.elements[1])
+        // console.log(form.elements.contents)
+        // console.log(form.elements[2])
+        // console.log(form.querySelector('button[type="submit"]'))
       })
     </script>
-  
 
     <section>
       <h2>실습</h2>
     </section>
+
     <!-- beforebegin : before() -->
     <h1 style="display: flex">
       <!-- afterbegin : prepend() -->
@@ -258,8 +201,6 @@ console.log({configValue})
         <li>스트로베리</li>
       </ol>
     </div>
-
-
 
     <div class="parent" style="display: flex; flex-direction: column; gap: 0.5rem;">
       <span>자식 1</span>
