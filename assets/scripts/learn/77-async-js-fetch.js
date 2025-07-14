@@ -1,3 +1,5 @@
+/* global DOMPurify */
+
 // 🚀 Fetch API (웹 브라우저에서 기본 제공되는 API)
 // ----------------------------------------------------------------
 
@@ -76,4 +78,55 @@
     .then((response) => response.json())
     .then((responseData) => console.log(responseData));
 
+});
+
+(() => {
+  // 비동기 자바스크립트를 사용해 서버와 비동기 통신(페칭: fetcing 요청/응답)
+  const promise = fetch('https://api.github.com/users/wjjhhj0914/repos')
+    
+  promise
+    // [2]
+    .then((response) => response.json())
+    // .then(console.log)
+    // [3]
+    .then((responseData) => {
+      // 데이터 정리(가공)
+      const massagedData = responseData.map(
+        ({ git_url, description, owner: { avatar_url, login } }) => {
+          // 정리된 객체 생성 및 반환
+          return {
+            url: git_url,
+            description,
+            avatar: avatar_url,
+            account: login,
+          }
+        },
+      )
+
+      // 비동기 통신 이후, 데이터 변경이 완료된 이후에 DOM 업데이트
+      // console.log(reposList, responseData) 
+
+      // 동적으로 마크업 코드(template) 생성
+      const listTemplate = massagedData.map(({ url, description, avatar, account }) => {
+        // const linkContent = url.replace('git://', '').replace('.git', '')
+        // 정규 표현식(Regular Expression, RegExp)
+        const linkContent = url.replace(/^git:\/\/|.git$/g, '')
+        const linkHref = `https://${linkContent}`
+        return `
+          <li>
+            <h3>${account}</h3>
+            <img src="${avatar}" alt="" height="40" width="40" />
+            <a href="${linkHref}">${linkContent}</a>
+            <p>${description}</p>
+          </li>
+        `
+      }).join('')
+
+      // reposList.insertAdjacentHTML('beforeend', DOMPurify.sanitize(listTemplate))
+      reposList.innerHTML = DOMPurify.sanitize(listTemplate)
+
+    })
+
+  // 비동기 통신 이후, DOM 업데이트
+  const reposList = document.querySelector('.repos-list')
 })();
