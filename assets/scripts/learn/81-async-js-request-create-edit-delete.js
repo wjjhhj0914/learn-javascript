@@ -1,8 +1,10 @@
-// 🚀 생성/수정/삭제 요청 (CRUD)
-// ---------------------------------------------------------
+// --------------------------------------------------------------------------
+// 📌 생성/수정/삭제 요청
+// --------------------------------------------------------------------------
 
 // Fetch API (Modern)
-(() => {
+;(() => {
+  
   // 상품 생성
   // POST dummyjson.com/products/add
   createProduct({
@@ -18,7 +20,7 @@
     rating: 4.16
   })
     .then(console.log)
-    
+
   createProduct({
     title: '내가 만든 상품 3!',
     price: 12000,
@@ -52,10 +54,13 @@
       .catch(console.error)
       // .finally(() => console.log('요청 종료'))
   }
-});
 
-// XMLHttpRequest (Old)
-(() => {
+})()
+
+
+// XMLHttpRequest (Legacy)
+;(() => {
+  
   // 상품 생성
   // POST dummyjson.com/products/add
   createProduct(
@@ -88,4 +93,5 @@
     xhr.send(JSON.stringify(productInfo))
     xhr.addEventListener('load', responseCallback)
   }
-})();
+
+})
