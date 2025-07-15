@@ -1,0 +1,10 @@
+{
+  "name": "basic-authorization-test-server",
+  "scripts": {
+    "start": "node app.mjs"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "json-server": "0.17.4"
+  }
+}

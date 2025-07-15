@@ -4,8 +4,20 @@
     { "id" : 2, "name": "Mary" }
   ],
   "products": [
-    { "id": 1, "name": "Burger" },
-    { "id": 2, "name": "Pizza" },
-    { "id": 3, "name": "Pasta" }
+    {
+      "id": 1,
+      "name": "Burger",
+      "price": 2000
+    },
+    {
+      "id": 2,
+      "name": "Pizza",
+      "price": 3000
+    },
+    {
+      "id": 3,
+      "name": "Pasta",
+      "price": 3500
+    }
   ]
 }
