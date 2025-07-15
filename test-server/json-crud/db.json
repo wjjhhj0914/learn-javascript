@@ -1,0 +1,11 @@
+{
+  "users": [
+    { "id" : 1, "name": "Hyojung" },
+    { "id" : 2, "name": "Mary" }
+  ],
+  "products": [
+    { "id": 1, "name": "Burger" },
+    { "id": 2, "name": "Pizza" },
+    { "id": 3, "name": "Pasta" }
+  ]
+}
