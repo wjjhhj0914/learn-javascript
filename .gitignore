@@ -3,3 +3,5 @@ node_modules/
 
 # macOS 환경파일
 .DS_Store
+
+.env
